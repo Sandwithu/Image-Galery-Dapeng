@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Membasuh | Dapeng</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #B7C8DE;
+      font-family: poppins;
+    }
+
+    header {
+      background-color: #8E673E;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .navigasimenu {
+      background-color: #26364B;
+      overflow: hidden;
+      border: 15px solid #26364B;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    }
+
+    .navigasimenu a {
+      float: left;
+      display: block;
+      color: #f3d5bc;
+      text-align: center;
+      padding: 15px 22px;
+      text-decoration: none;
+      font-size: 17px;
+      margin: 8px;
+    }
+
+    .navigasimenu a:hover {
+      border-radius: 10px;
+      background-color: #8E673E;
+      color: #f3d5bc;
+    }
+
+    .navigasimenuactive {
+      border-radius: 10px;
+      background-color: #8E673E;
+      color: #f3d5bc;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+    }
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #f3d5bc;
+      margin: 3px 0;
+    }
+
+    @media (max-width: 768px) {
+      .navigasimenu {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        width: 100%; /* Half the screen width */
+        position: absolute;
+        top: 0px;
+        padding-top: 70px;
+        padding-bottom: 20px;
+        left: 0;
+        background-color: #26364B;
+        border: none;
+        box-shadow: none;
+      }
+
+      .navigasimenu.active {
+        display: flex;
+      }
+
+      .navigasimenu a {
+        text-align: left;
+        padding: 10px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    .containerutama {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      color: #26364B;
+    }
+
+    .sidebar-left, .sidebar-right {
+      width: 45%;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: zoom-in;
+    }
+
+    .sidebar-left {
+      width: 45%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .sidebar-left img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar-right {
+      width: 45%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .sidebar-right img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar-left:hover, .sidebar-right:hover {
+      transform: scale(1.05);
+    }
+
+    .content {
+      width: 45%;
+      padding: 25px;
+      border-right: 2px solid #26364ba0;
+    }
+
+    .contentss {
+      width: 45%;
+      padding: 25px;
+      border-left: 2px solid #26364ba0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .music-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 35px;
+    }
+
+    .music-box {
+      width: 300px;
+      height: 90px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+
+    .music-box audio {
+      width: 100%;
+      height: 30px;
+      border: none;
+      background-color: transparent;
+    }
+
+    .music-box div {
+      font-size: 12px;
+      color: #26364B;
+      margin-top: 5px;
+    }
+
+    .desc {
+      padding: 25px;
+      text-align: center;
+      color: #f3d5bc;
+      font-size: 18px;
+    }
+
+
+    @media (max-width: 768px) {
+      .containerutama {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .sidebar-left, .sidebar-right, .content, .contentss {
+        width: 90%;
+        margin-bottom: 20px;
+      }
+
+      .content {
+        border-left: none;
+        border-right: none;
+      }
+
+      .contentss {
+        border-left: none;
+        border-right: none;
+      }
+    }
+
+    .kakikaki {
+      background-color: #8E673E;
+      padding: 15px;
+      text-align: center;
+      font-size: 18px;
+    }
+	
+	.contentss img {
+      width: 80%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      max-width: 100%;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .contentss .caption {
+      text-align: center;
+      font-style: italic;
+      color: #26364B;
+      margin-bottom: 15px;
+      padding-top: 40px;
+    }
+
+	.image-gallery { /* Added */
+      width: 95%; /* Adjust width as needed */
+      margin: 50px auto; /* Increased margin to 50px */
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .gallery-item { /* Added */
+      width: 48%; /* Two items per row with some spacing */
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+	  background-color: #26364B; /* Added background color */
+      border-radius: 15px; /* Match image border-radius */
+      padding: 10px; /* Add some padding */
+	  box-sizing: border-box; /* Added to include padding in width calculation */
+    }
+
+    .gallery-item img { /* Added */
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      object-fit: cover;
+    }
+
+    .gallery-item .caption { /* Added */
+      text-align: center;
+      font-style: italic;
+      color: #f0f0f0;
+      margin-top: 25px;
+    }
+
+	@media (max-width: 600px) { /* Added media query for smaller screens */
+      .image-gallery {
+        flex-direction: column; /* Stack items on smaller screens */
+        align-items: center;
+      }
+
+      .gallery-item {
+        width: 90%; /* Make items take up more width on smaller screens */
+      }
+    }
+  </style>
+
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById("menu");
+      menu.classList.toggle('active');
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1 style="color: #f3d5bc;">Foto Ijazah Sebelum Berpisah</h1>
+    <p style="color: #f3d5bc;">Momen kali ini saya taruh didalam lagu <b>"Membasuh"</b> pada album Menari Dengan Bayangan.</p>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </header>
+
+  <div class="navigasimenu" id="menu">
+    <a href="index.html">Rumah ke Rumah</a>
+    <a href="ijazah.html" class="navigasimenuactive"><b>Membasuh</b></a>
+    <a href="rr.html">Tarot</a>
+    <a href="yb.html">Kita ke Sana</a>
+  </div>
+
+  <div class="containerutama">
+    <div class="content">
+      <h2 style="text-align: center;">Perpisahan Adalah Kesedihan Yang Manis</h2>
+      <p style="text-align: justify;">Perpisahan memang sedih, tapi kita udah capai tujuan bareng, kan? Momen foto ijazah ini jadi bukti bahwa kita udah melewati semua rintangan, dari bangun pagi-pagi sampe begadang mengerjakan tugas, dan akhirnya kita siap melangkah ke masa depan yang lebih keren! <b>Kenangan indah dan persahabatan</b> yang kita jalin akan selalu terkenang, dari ngobrol sampai tengah malam, dari ketawa sampai nangis, dan kita siap buat chapter baru yang lebih seru! Semoga kita semua bisa terus maju dan mencapai impian kita, dan tetap menjaga hubungan yang sudah kita jalin selama ini ya.</p>
+      <div class="music-container">
+        <div class="music-box">
+          <audio id="music" controls>
+            <source src="Hindia ft. Rara Sekar - Membasuh (Official Lyric & Commentary Video).mp3" type="audio/mp3">
+          </audio>
+          <div>Membasuh - Hindia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-right">
+      <img src="Ijazah 1.jpg" alt="Foto">
+    </div>
+  </div>
+
+  <div class="containerutama">
+    <div class="sidebar-left">
+      <img src="Ijazah 2.jpg" alt="Foto">
+    </div>
+    <div class="contentss">
+      <h2 style="text-align: center;">Setelah Lulus Mau Kemana?</h2>
+
+      <p style="text-align: justify;">Sekarang kita harus memikirkan tentang masa depan, mau kemana kita setelah lulus ini? Apakah kita mau lanjut kuliah, cari kerja, atau mungkin jadi wirausaha? <b>Kita semua punya pilihan dan kesempatan</b> yang sama untuk mencapai impian kita, jadi kita harus menikmati prosesnya dan tidak terlalu stres tentang masa depan. Kita harus percaya diri sendiri dan tidak takut untuk mencoba, karena kita udah melewati semua rintangan dan tantangan selama sekolah. Semoga kita semua bisa mencapai impian kita dan menjadi versi terbaik dari diri kita sendiri!</p>
+    </div>
+  </div>
+
+  <div class="image-gallery">
+    <div class="gallery-item">
+      <img src="Ijazah Cowo.jpg" alt="Image 1">
+      <p class="caption">Ini Cowo, Sedikit Tidak Full Tapi Keren</p>
+    </div>
+    <div class="gallery-item">
+      <img src="Ijazah Ciwi.jpg" alt="Image 2">
+      <p class="caption">Ini Versi Cewe, Tapi Ga Full. Gapapa Gemas</p>
+    </div>
+  </div>
+
+  <div class="kakikaki">
+    <p style="color: #f3d5bc;">Kita bergerak dan bersuara, berlajan jauh <b>tumbuh bersama</b>. Sempatkan pulang ke beranda, tuk mencatat hidup dan harganya.</p>
+  </div>
+
+
+</body>
+</html>

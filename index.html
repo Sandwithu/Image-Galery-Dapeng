@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home | Dapeng</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #B7C8DE;
+      font-family: poppins;
+    }
+
+    header {
+      background-color: #8E673E;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .navigasimenu {
+      background-color: #26364B;
+      overflow: hidden;
+      border: 15px solid #26364B;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      position: relative;
+      z-index: 1;
+      margin-top: 0px; /* Add some space between header and nav */
+    }
+
+    .navigasimenuactive {
+      border-radius: 10px;
+      background-color: #8E673E;
+      color: #f3d5bc;
+    }
+
+    .navigasimenu a {
+      float: left;
+      display: block;
+      color: #f3d5bc;
+      text-align: center;
+      padding: 15px 22px;
+      text-decoration: none;
+      font-size: 17px;
+      margin: 8px;
+    }
+
+    .navigasimenu a:hover {
+      border-radius: 10px;
+      background-color: #8E673E;
+      color: #f3d5bc;
+    }
+
+    .containerutama {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      color: #26364B;
+    }
+
+    .sidebar-left {
+      width: 25%;
+      margin: 0 10px;
+      margin-right: 20px;
+    }
+
+    .sidebar-left img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar-right {
+      width: 25%;
+      margin: 0 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 25px;
+    }
+
+    .content {
+      width: 45%;
+      padding: 25px;
+      border-left: 2px solid #26364ba0;
+      border-right: 2px solid #26364ba0;
+    }
+
+    .music-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 35px;
+    }
+
+    .music-box {
+      width: 300px;
+      height: 65px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+
+    .music-box audio {
+      width: 100%;
+      height: 30px;
+      border: none;
+      background-color: transparent;
+    }
+
+    .music-box div {
+      font-size: 12px;
+      color: #26364B;
+      margin-top: 5px;
+    }
+
+    .kakikaki {
+      background-color: #8E673E;
+      padding: 15px;
+      text-align: center;
+      font-size: 15px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      right: 0;
+      box-sizing: border-box; /* Add this line */
+    }
+
+    .kakikaki p {
+      word-wrap: break-word; /* Add this line */
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 2;
+    }
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #f3d5bc;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 768px) {
+      .containerutama {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .sidebar-left, .sidebar-right, .content {
+        width: 90%;
+        margin-bottom: 20px;
+      }
+
+      .content {
+        border-left: none;
+        border-right: none;
+      }
+
+      .navigasimenu {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        width: 100%; /* Half the screen width */
+        position: absolute;
+        top: 0px;
+        padding-top: 70px;
+        padding-bottom: 20px;
+        left: 0;
+        background-color: #26364B;
+        border: none;
+        box-shadow: none;
+      }
+
+      .navigasimenu.active {
+        display: flex; /* Appears when active class is toggled */
+      }
+
+      .navigasimenu a {
+        text-align: left;
+        padding: 10px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById("menu");
+      menu.classList.toggle('active');
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1 style="color: #f3d5bc;">My Photo Gallery Collection</h1>
+    <p style="color: #f3d5bc;">Tone warna terinspirasi dari 2 album musik oleh Hindia yaitu <b>MDB & LHAB</b>.</p>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </header>
+
+  <div class="navigasimenu" id="menu">
+    <a href="index.html" class="navigasimenuactive"><b>Rumah ke Rumah</b></a>
+    <a href="ijazah.html">Membasuh</a>
+    <a href="rr.html">Tarot</a>
+    <a href="yb.html">Kita ke Sana</a>
+  </div>
+
+  <div class="containerutama">  
+    <div class="sidebar-left">
+      <img src="ANJAY.jpg" alt="Foto">
+    </div>
+
+    <div class="content">
+      <h2 style="text-align: center;">Aku Siapa Ya?</h2>
+      <p style="text-align: justify;">Haii namaku <b>Dava Febriansyah</b>, biasanya orang memanggilku dengan Dava, Dapa, dan Dapeng. Hari ini umurku 17 tahun, tapi nanti 9 Februari umurku jadi 18 tahun woww. Kenapa aku membuat blog ini? Ya benar karena tugas dari Bapak Halim. Selain tugas blog ini juga bertujuan untuk mengekspresikan diriku.</p>
+      <p style="text-align: justify;">Lahir pada 9 Februari 2007 di hari Jum'at di suatu keluarga yang bahagia. Setelah umurku 3-4 tahun aku pindah keluarga, unik bukan? Kalo ngomongin soal hobi sih aku ngga punya hobi tetap. Tapi aku suka belajar hal baru sambil dengerin musik. Apalagi musik dari Hindia, Feast, dan lainnya. Ini aja aku bikin blognya sambil dengerin lagu <b>Rumah ke Rumah</b> dan mam sate nenek. And silahkan kalian dengerin musik favoritku!</p>
+      <div class="music-container">
+        <div class="music-box">
+          <audio id="music" controls>
+            <source src="Hindia - Rumah Ke Rumah (_Official Lyric & Commentary Video) [ ezmp3.cc ].mp3" type="audio/mp3">
+          </audio>
+          <div>Rumah ke Rumah - Hindia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-right">
+      <h2 style="text-align: center;">After Graduation</h2>
+      <p style="text-align: justify;">Setelah lulus aku akan melanjutkan ilmuku di Institut Teknologi Sepuluh Nopember pada Prodi <b>Desain Produk Industri</b>. Aku akan melalui jalur SNBP dan pastinya akan mengerjakan 2 jenis portofolio yaitu Gambar Bertema dan Karya Bebas. Funfact saat ini pada 28/1/25 saya membuat blog dan soal portofolionya keluar!!, ngerjain sambil degdegan. ITS PLIS TERIMA AKU AAMIIN</p>
+    </div>
+  </div>
+
+  <div class="kakikaki">
+    <p style="color: #f3d5bc;">Pindah berkala rumah ke rumah, mengambil pelajaran <b>jika berpisah</b>, jikalau suatu saat berujung indah, catat nama kita dalam sejarah.</p>
+  </div>   
+</body>
+</html>

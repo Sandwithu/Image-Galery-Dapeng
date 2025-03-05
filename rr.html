@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarot | Dapeng</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #B7C8DE;
+      font-family: poppins;
+    }
+
+    header {
+      background-color: #8E673E;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .navigasimenu {
+      background-color: #26364B;
+      overflow: hidden;
+      border: 15px solid #26364B;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    }
+
+    .navigasimenuactive {
+      border-radius: 10px;
+      background-color: #8E673E;
+      color: #f3d5bc;
+    }
+
+    .navigasimenu a {
+      float: left;
+      display: block;
+      color: #f3d5bc;
+      text-align: center;
+      padding: 15px 22px;
+      text-decoration: none;
+      font-size: 17px;
+      margin: 8px;
+    }
+
+    .navigasimenu a:hover {
+      border-radius: 10px;
+      background-color: #8E673E;
+      color: #f3d5bc;
+    }
+
+    .galeri {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 15px;
+      border-bottom: 2px solid #26364ba0;
+    }
+
+    .galeri .item {
+      border: #26364B solid 3px;
+      width: 96%; /* Adjusted percentage width for slightly larger items */
+      height: auto; /* Adjust height automatically */
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .galeri .item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .galeri .item img:hover {
+      transform: scale(1.1);
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px; /* Adjusted padding */
+      box-sizing: border-box;
+    }
+
+    .container > div {
+      width: 100%;
+      max-width: 350px; /* Adjusted max-width */
+      margin: 0 auto; /* Center the container horizontally */
+      text-align: center;
+      padding: 20px; /* Adjusted padding */
+      box-sizing: border-box; /* Added box-sizing */
+    }
+
+    audio {
+      width: 100%;
+    }
+
+    .textRR {
+      text-align: center;
+      padding: 1px;
+      margin-left: 50px;
+      margin-right: 50px;
+      margin-top: 5px;
+      align-content: center;
+    }
+
+    .containerutama {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
+      margin-top: 15px;
+      margin-bottom: 25px;
+      color: #26364B;
+    }
+
+    .sidebar-right {
+      text-align: center; /* Changed to center */
+      width: 30%;
+      height: 300px; /* Reduced height */
+      padding: 5px;
+      background-image: url(RR4.jpg);
+      border-radius: 15px;
+      background-size: cover;
+      background-position: center;
+      margin-left: auto; /* Changed to auto */
+      margin-right: auto; /* Changed to auto */
+      border: #26364B solid 3px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.33);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: zoom-in;
+    }
+
+    .content {
+      text-align: center;
+      width: 50%; /* Increased width */
+      padding: 25px;
+      border-left: 2px solid #26364ba0;
+      box-sizing: border-box; /* Added box-sizing */
+    }
+
+    .sidebar-left {
+      margin-top: 140px;
+      margin-right: 100px;
+      text-align: center;
+      width: 25%;
+      padding: 25px;
+    }
+
+    .kakikaki {
+      background-color: #8E673E;
+      padding: 15px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 2;
+    }
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #f3d5bc;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 768px) {
+      .containerutama {
+        flex-direction: column; /* Stack the items vertically */
+        align-items: center; /* Center items horizontally */
+      }
+
+      .sidebar-left,
+      .sidebar-right,
+      .content {
+        width: 90%; /* Make them take up most of the width */
+        margin-bottom: 20px; /* Add some space below each item */
+      }
+
+      .content {
+        border-left: none; /* Remove the border */
+        border-right: none; /* Remove the border */
+      }
+
+      .navigasimenu {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        width: 100%; /* Half the screen width */
+        position: absolute;
+        top: 0px;
+        padding-top: 70px;
+        padding-bottom: 20px;
+        left: 0;
+        background-color: #26364B;
+        border: none;
+        box-shadow: none;
+      }
+
+      .navigasimenu.active {
+        display: flex; /* Appears when active class is toggled */
+      }
+
+      .navigasimenu a {
+        text-align: left;
+        padding: 10px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+      .galeri .item {
+        width: 95%; /* Single column on mobile, almost full width */
+      }
+
+      .sidebar-right {
+        height: 200px; /* Further reduced height on mobile */
+      }
+    
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #f3d5bc;
+      margin: 3px 0;
+    }
+
+    /* Responsive layout for smaller screens */
+    @media (max-width: 768px) {
+      .containerutama {
+        flex-direction: column; /* Stack items vertically */
+        align-items: stretch; /* Make items full width */
+      }
+
+      .sidebar-left,
+      .sidebar-right,
+      .content {
+        width: 100%; /* Full width on mobile */
+        margin-left: 0; /* Remove side margins */
+        margin-right: 0;
+        padding: 15px; /* Adjust padding */
+        border: none; /* Remove borders */
+      }
+
+      .sidebar-left {
+        margin-top: 0; /* Remove top margin */
+      }
+
+      .content {
+        border-top: 2px solid #26364ba0; /* Add top border for separation */
+        box-sizing: border-box; /* Added box-sizing */
+      }
+
+      .container > div {
+        max-width: 100%; /* Full width on mobile */
+        box-sizing: border-box; /* Added box-sizing */
+      }
+    }
+
+    /* Hamburger Menu Styles */
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="color: #f3d5bc;">Foto Crownosphere Rebellion Rose</h1>
+    <p style="color: #f3d5bc;">Keluar dari Album MDB & LHAB, Tarot adalah satu lagu dari <b>.Feast</b> pada album Membangun & Menghancurkan.</p>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </header>
+
+  <nav class="navigasimenu">
+    <a href="index.html">Rumah ke Rumah</a>
+    <a href="ijazah.html">Membasuh</a>
+    <a href="rr.html" class="navigasimenuactive"><b>Tarot</b></a>
+    <a href="yb.html">Kita ke Sana</a>
+  </nav>
+
+  <main class="galeri">
+    <table>
+      <tr>
+        <td><div class="item"><img src="RR FIX1.jpg" alt="Foto Crownosphere Rebellion Rose 1"></div></td>
+        <td><div class="item"><img src="RRFIX 2.jpg" alt="Foto Crownosphere Rebellion Rose 2"></div></td>
+        <td><div class="item"><img src="RRFIX 3.jpg" alt="Foto Crownosphere Rebellion Rose 3"></div></td>
+      </tr>
+    </table>
+  </main>
+
+  <section class="textRR">
+    <h2>Konser Penutupan</h2>
+    <p style="text-align: justify;">Konser penutupan ini bener-bener momen yang <b>tidak terlupakan</b>, ya! Kita yang udah capek-capek belajar dan mengerjakan tugas, akhirnya bisa menikmati siang yang seru ini bersama-sama. Konser ini jadi penutupan yang sempurna untuk perjalanan kita di SMK ini, dan kita bisa merasakan <b>euforia</b> dan kebahagiaan yang tidak terhingga. Kita bernyanyi, menari, dan tertawa bersama, tanpa memikirkan tentang ujian, tugas, dan semua stres yang kita hadapi selama ini. Konser ini jadi pengingat bahwa kita tidak hanya sekedar siswa, tapi <b>kita juga manusia</b> yang butuh hiburan, kebahagiaan, dan kenangan yang indah. Kita berharap bahwa kenangan ini bisa kita bawa <b>sampai ke masa depan</b>, dan kita bisa terus menjaga persahabatan dan kebersamaan yang sudah kita jalin selama ini. Semoga konser ini bisa jadi awal yang baru untuk kita, dan kita bisa melangkah ke masa depan dengan penuh harapan dan kebahagiaan ya!</p>
+  </section>
+
+  <div class="containerutama">
+    <aside class="sidebar-right"></aside>
+    <aside class="sidebar-left">
+      <h2>Guess Who This Is?!</h2>
+    </aside>
+    <article class="content">
+      <h2>Maybe This Song Can Explain</h2>
+      <section class="container">
+        <div style="margin-top: 35px; width: 300px; height: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); text-align: center; padding: 10px; background-color: #f0f0f0; display: flex; flex-direction: column; align-items: center;">
+          <audio id="music" controls style="width: 100%; height: 30px; border: none; background-color: transparent;">
+            <source src="Feast - Tarot (Official Lyric Video) [ ezmp3.cc ].mp3" type="audio/mp3">
+          </audio>
+          <div style="font-size: 12px; color:#26364B; margin-top: 5px;">Tarot - .Feast</div>
+          <p style="padding-top: 10px; margin-bottom: 0;">A song that is suitable for anyone, of course family and friends.</p>
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <footer class="kakikaki">
+    <p style="color: #f3d5bc;">Dikehidupan kedua, semoga kau tak terlalu <b>keras kepala</b>. Atau mungkin ini bukan yang pertama, dan kita diberi <b>kesempatan berubah</b>.</p>
+  </footer>
+  
+  <script>
+    function toggleMenu() {
+      var menu = document.querySelector('.navigasimenu');
+      menu.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

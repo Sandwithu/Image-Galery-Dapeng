@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kita Ke Sana | Dapeng</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #B7C8DE;
+      font-family: poppins, sans-serif;
+    }
+
+    header {
+      background-color: #8E673E;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .navigasimenu {
+      background-color: #26364B;
+      overflow: hidden;
+      border: 15px solid #26364B;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    }
+
+    .navigasimenuactive {
+      border-radius: 10px;
+      background-color: #8E673E;
+      color: #f3d5bc;
+    }
+
+    .navigasimenu a {
+      float: left;
+      display: block;
+      color: #f3d5bc;
+      text-align: center;
+      padding: 15px 22px;
+      text-decoration: none;
+      font-size: 17px;
+      margin: 8px;
+    }
+
+    .navigasimenu a:hover {
+      border-radius: 10px;
+      background-color: #8E673E;
+      color: #f3d5bc;
+    }
+
+    .containerutama {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      color: #26364B;
+    }
+
+    .carousel {
+      position: relative;
+      width: 70%;
+      margin-left: 30px;
+      padding-right: 20px;
+      overflow: hidden;
+      border-radius: 10px;
+      display: flex; /* Use flexbox to align images */
+      align-items: center; /* Vertically center images */
+      padding-left: 20px;
+    }
+
+    .carousel img {
+      width: 400px; /* Fixed width for all images */
+      height: 400px; /* Fixed height for all images */
+      object-fit: cover; /* Cover the area, cropping if necessary */
+      border-radius: 10px;
+      margin: 0 10px; /* Add spacing between images */
+      transition: transform 0.5s ease-in-out;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .carousels {
+      position: relative;
+      width: 70%;
+      margin-right: 30px;
+      padding-left: 20px;
+      overflow: hidden;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .carousels img {
+      width: 600px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 0 10px;
+      transition: transform 0.5s ease-in-out;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      flex-shrink: 0; /* Prevent images from shrinking */
+    }
+
+    .text-content {
+      width: 45%;
+      color: #26364B;
+      border-right: #26364B solid 2px;
+      padding-right: 20px;
+      padding-left: 20px;
+      text-align: center;
+    }
+
+    .text-contents {
+      width: 45%;
+      color: #26364B;
+      border-left: #26364B solid 2px;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .lightbox-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+
+    .lightbox-content img {
+      width: 100%;
+      height: auto;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .music-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 35px;
+    }
+
+    .music-box {
+      width: 300px;
+      height: 65px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+
+    .music-box audio {
+      width: 100%;
+      height: 30px;
+      border: none;
+      background-color: transparent;
+    }
+
+    .music-box div {
+      font-size: 12px;
+      color: #26364B;
+      margin-top: 5px;
+    }
+
+    .kakikaki {
+      background-color: #8E673E;
+      padding: 15px;
+      padding-left: 90px;
+      padding-right: 90px;
+      text-align: center;
+      font-size: 15px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      right: 0;
+      box-sizing: border-box; /* Add this line */
+    }
+
+    @media (max-width: 768px) {
+      .containerutama {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .carousel, .carousels {
+        width: 100%; /* Make carousels take up 90% of the screen width */
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .carousels img {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+      }
+
+      .text-content{
+        border: none;
+        text-align: center;
+        width: 90%;
+        margin-bottom: 0px;
+      }
+
+      .text-contents {
+        width: 90%;
+        border: none;
+        border-bottom: #26364B solid 2px;
+        text-align: center;
+      }
+      .carousel, .carousels {
+        padding: 0;
+        margin: 0;
+      }
+
+
+  }
+
+  .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 2;
+    }
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #f3d5bc;
+      margin: 4px 0;
+    }
+
+    .containerutamadd {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      border-top: #26364B solid 2px;
+      color: #26364B;
+    }
+
+    .sidebar-leftdd {
+      width: 45%;
+      padding: 25px;
+      border-left: 2px solid #26364ba0;
+      border-right: 2px solid #26364ba0;
+    }
+
+    .sidebar-leftdd img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar-rightdd {
+      width: 25%;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 25px;
+    }
+
+    .contentdd {
+      width: 25%;
+  
+      margin: 0 10px;
+      margin-right: 20px;
+
+    }
+
+
+    @media (max-width: 768px) {
+      .containerutamadd {
+        flex-direction: column;
+        align-items: center;
+        border: none;
+      }
+
+      .contentdd {
+        width: 90%;
+        border-top: #26364B solid 2px;
+      }
+
+      .sidebar-rightdd {
+        width: 90%;
+        border: none;
+      }
+
+        .sidebar-leftdd {
+        width: 60%;
+        height: auto;
+        border: none;
+      }
+
+      .kakikaki {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      .navigasimenu {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        width: 100%; /* Half the screen width */
+        position: absolute;
+        top: 0px;
+        padding-top: 70px;
+        padding-bottom: 20px;
+        left: 0;
+        background-color: #26364B;
+        border: none;
+        box-shadow: none;
+      }
+
+      .navigasimenu.active {
+        display: flex; /* Appears when active class is toggled */
+      }
+
+      .navigasimenu a {
+        text-align: left;
+        padding: 10px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+  </style>
+
+  <script>
+    function toggleMenu() {
+      var menu = document.querySelector('.navigasimenu');
+      menu.classList.toggle('active');
+    }
+  </script>
+
+</head>
+<body>
+  <header>
+    <h1 style="color: #f3d5bc;">Foto Yearbook - Skena</h1>
+    <p style="color: #f3d5bc;">Kelas 12 eh tiba-tiba ada Yearbook, tandanya? Waktu kita tinggal hitungan bulan ya.</p>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </header>
+
+  <div class="navigasimenu">
+    <a href="index.html">Rumah ke Rumah</a>
+    <a href="ijazah.html">Membasuh</a>
+    <a href="rr.html">Tarot</a>
+    <a href="yb.html" class="navigasimenuactive"><b>Kita ke Sana</b></a>
+  </div>
+
+  <div class="containerutama">
+    <div class="text-content">
+      <h2>Memories For Life</h2>
+      <p style="text-align: justify;">Koleksi kenangan-kenangan yang tak pernah hilang dari masa-masa SMK. Dari <b>momen-momen penting</b>, hingga kenangan-kenangan yang tak terlupakan dengan teman-teman dan guru-guru. Kami berharap Yearbook ini dapat menjadi kenangan yang tak pernah hilang bagi kita semua. Simak dan jangan lupa untuk <b>menyimpan kenangan</b>-kenangan ini untuk selamanya! Apakah kamu siap untuk mengenang kembali masa-masa SMK yang tak pernah hilang? Masa-masa yang membuat kita belajar, berkembang, dan <b>menjadi lebih baik</b>. Semua kenangan itu akan selalu ada di hati kita, dan Yearbook ini adalah tempat untuk menyimpannya.</p>
+      <p>Enjoy the journey through our yearbook gallery!</p>
+    </div>
+    <div class="carousel">
+      <img src="YB 1.jpg" alt="Foto 1" onclick="openLightbox();currentSlide(1)">
+      <img src="YB 2.jpg" alt="Foto 2" onclick="openLightbox();currentSlide(2)">
+      <img src="YB 5.jpg" alt="Foto 3" onclick="openLightbox();currentSlide(3)">
+      <img src="bertiga 3.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(9)">
+      <img src="YB 3.jpg" alt="Foto 4" onclick="openLightbox();currentSlide(4)">
+      <img src="cwo yb.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(5)">
+      <img src="YB BARENG.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(6)">
+      <img src="bertiga 1.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(7)">
+      <img src="yb 222.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(10)">
+      <img src="yb aku.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(11)">
+      <img src="bertiga 2.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(8)">
+      <img src="YB 1.jpg" alt="Foto 1" onclick="openLightbox();currentSlide(1)">
+      <img src="YB 2.jpg" alt="Foto 2" onclick="openLightbox();currentSlide(2)">
+      <img src="YB 5.jpg" alt="Foto 3" onclick="openLightbox();currentSlide(3)">
+      <img src="bertiga 3.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(9)">
+      <img src="YB 3.jpg" alt="Foto 4" onclick="openLightbox();currentSlide(4)">
+      <img src="cwo yb.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(5)">
+      <img src="YB BARENG.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(6)">
+      <img src="bertiga 1.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(7)">
+      <img src="yb 222.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(10)">
+      <img src="yb aku.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(11)">
+      <img src="bertiga 2.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(8)">
+      <img src="YB 1.jpg" alt="Foto 1" onclick="openLightbox();currentSlide(1)">
+      <img src="YB 2.jpg" alt="Foto 2" onclick="openLightbox();currentSlide(2)">
+      <img src="YB 5.jpg" alt="Foto 3" onclick="openLightbox();currentSlide(3)">
+      <img src="bertiga 3.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(9)">
+      <img src="YB 3.jpg" alt="Foto 4" onclick="openLightbox();currentSlide(4)">
+      <img src="cwo yb.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(5)">
+      <img src="YB BARENG.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(6)">
+      <img src="bertiga 1.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(7)">
+      <img src="yb 222.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(10)">
+      <img src="yb aku.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(11)">
+      <img src="bertiga 2.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(8)">
+      <img src="YB 1.jpg" alt="Foto 1" onclick="openLightbox();currentSlide(1)">
+      <img src="YB 2.jpg" alt="Foto 2" onclick="openLightbox();currentSlide(2)">
+      <img src="YB 5.jpg" alt="Foto 3" onclick="openLightbox();currentSlide(3)">
+      <img src="bertiga 3.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(9)">
+      <img src="YB 3.jpg" alt="Foto 4" onclick="openLightbox();currentSlide(4)">
+      <img src="cwo yb.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(5)">
+      <img src="YB BARENG.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(6)">
+      <img src="bertiga 1.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(7)">
+      <img src="yb 222.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(10)">
+      <img src="yb aku.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(11)">
+      <img src="bertiga 2.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(8)">
+      <img src="YB 1.jpg" alt="Foto 1" onclick="openLightbox();currentSlide(1)">
+      <img src="YB 2.jpg" alt="Foto 2" onclick="openLightbox();currentSlide(2)">
+      <img src="YB 5.jpg" alt="Foto 3" onclick="openLightbox();currentSlide(3)">
+      <img src="bertiga 3.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(9)">
+      <img src="YB 3.jpg" alt="Foto 4" onclick="openLightbox();currentSlide(4)">
+      <img src="cwo yb.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(5)">
+      <img src="YB BARENG.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(6)">
+      <img src="bertiga 1.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(7)">
+      <img src="yb 222.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(10)">
+      <img src="yb aku.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(11)">
+      <img src="bertiga 2.JPG" alt="Foto 4" onclick="openLightbox();currentSlide(8)">
+    </div>
+  </div>
+
+  <div class="containerutama">
+    <div class="carousels">
+      <img src="sekelas yb 1.JPG" alt="Foto 1" onclick="openLightbox();currentSlide(1)">
+      <img src="sekelas yb 2.JPG" alt="Foto 2" onclick="openLightbox();currentSlide(2)">
+      <img src="sekelas yb 1.JPG" alt="Foto 1" onclick="openLightbox();currentSlide(1)">
+      <img src="sekelas yb 2.JPG" alt="Foto 2" onclick="openLightbox();currentSlide(2)">
+      <img src="sekelas yb 1.JPG" alt="Foto 1" onclick="openLightbox();currentSlide(1)">
+      <img src="sekelas yb 2.JPG" alt="Foto 2" onclick="openLightbox();currentSlide(2)">
+      <img src="sekelas yb 1.JPG" alt="Foto 1" onclick="openLightbox();currentSlide(1)">
+      <img src="sekelas yb 2.JPG" alt="Foto 2" onclick="openLightbox();currentSlide(2)">
+    </div>
+
+    <div class="text-contents">
+      <div class="music-container" style="margin-top: 0px;">
+        <div class="music-box" style="margin-top: 20px;">
+          <audio id="music" controls>
+            <source src="Hindia - Kita ke Sana (Official Lyric Video) [ ezmp3.cc ].mp3" type="audio/mp3">
+          </audio>
+          <div>Kita Ke Sana - Hindia</div>
+        </div>
+      </div>
+      <h2>Blast From The Past</h2>
+      <p style="text-align: center; padding-right: 30px;">Take a trip down memory lane with our SMK Yearbook. Relive the good times and cherish the memories!</p>
+    </div>
+
+  </div>
+
+<p><h2 style="text-align: center; padding-left: 70px; padding-right: 70px;">A Special Page For The Songs We Each Like</h2></p>
+
+  <div class="containerutamadd">  
+
+    <div class="contentdd">
+      <p><h3 style="text-align: center;">Alexandra - Hindia</h3></p>
+      <p style="text-align: center; margin-left: 30px; margin-right: 30px;" >Salahkan kami, kami mengerti.
+        Satu hal yang bisa kau tiru hanya perihal merusak diri.
+        Berharap hal baik yang kau temui hari ini berarti.
+        Saat kau dewasa nanti.</p>
+
+        <p style="text-align: center; margin-left: 30px; margin-right: 30px;">Jalanmu berat, seumur hidup.
+          Semoga ada bara yang tersisa.
+          Pun kata maaf, jauh terlambat datang.
+          Salahkan kami.</p>
+
+          <p style="justify-content: center; border-radius: 10px;"><img src="album lhab.jpg" alt="LHAB" style="height: 300px; height: 300px; display: block; margin: 0 auto; border-radius: 10px;"></p>
+      <div class="music-container" style="margin-bottom: 50px;">
+        <div class="music-box">
+          <audio id="music" controls>
+            <source src="Hindia - Alexandra (Official Lyric Video).mp3" type="audio/mp3">
+          </audio>
+          <div>Alexandra - Hindia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-leftdd">
+      <img src="Gemassnyaa.png" alt="Foto">
+    </div>
+
+    <div class="sidebar-rightdd">
+      <div class="music-container">
+        <div class="music-box">
+          <audio id="music" controls>
+            <source src="Salma Salsabil - Sesal (Official Lyric Video).mp3" type="audio/mp3">
+          </audio>
+          <div>Sesal - Salma Salsabil</div>
+        </div>
+      </div>
+      <p style="justify-content: center; border-radius: 10px;"><img src="album bpt.webp" alt="BHPT" style="height: 300px; height: 300px; display: block; margin: 0 auto; border-radius: 10px;"></p>
+      <p style="text-align: center; margin-left: 30px; margin-right: 30px;" >Membiasakan diri tanpa kamu lagi.
+        Kupaksa hati menerima saat kau pergi.
+        Sungguh ini terlalu berat.
+        Aku tak sekuat itu, sayang.</p>
+
+        <p style="text-align: center; margin-left: 30px; margin-right: 30px;">Kamu lagi .
+          Kupaksa hati menerima saat kau pergi.
+          Sungguh ini terlalu berat.
+          Aku tak sekuat itu, sayang.</p>
+          <p><h3 style="text-align: center;">Sesal - Salma Salsabil</h3></p>
+    </div>
+  </div>
+
+  <div class="kakikaki">
+    <p style="color: #f3d5bc; margin: 50px, 30px;">Semuanya sementara, kita diujung cerita. Untuk 5 menit coba kau, mengambil alih dunia. Ada masanya kita, mencuri <b>ruang dan waktu</b>. Walau pasti berlalu, biarkan saja. Kita ke sana, selagi <b>masih bisa bersama</b>.</p>
+  </div> 
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.carousel img');
+    const totalSlides = slides.length;
+    const imageWidth = 420; // Width of image + margin
+
+    function showSlides() {
+      let i;
+      for (i = 0; i < totalSlides; i++) {
+        slides[i].style.transform = `translateX(-${slideIndex * imageWidth}px)`;
+      }
+
+      slideIndex++;
+      if (slideIndex > totalSlides - 1) {
+        slideIndex = 0;
+      }
+
+      setTimeout(showSlides, 2000);
+    }
+
+    showSlides();
+
+    function openLightbox() {
+      document.getElementById('lightbox').style.display = "block";
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = "none";
+    }
+
+    function currentSlide(n) {
+      let images = document.querySelectorAll ('.carousel img');
+      document.getElementById('lightbox-img').src = images[n - 1].src;
+    }
+    
+    let slideIndex2 = 0;
+    const slides2 = document.querySelectorAll('.carousels img');
+    const totalSlides2 = slides2.length;
+    const carousels = document.querySelector('.carousels');
+    const imageWidth2 = 620; // image width + margin
+
+    function showSlides2() {
+      const startScrollLeft = carousels.scrollLeft;
+      const targetScrollLeft = (slideIndex2 * imageWidth2) % (totalSlides2 * imageWidth2);
+      const distance = targetScrollLeft - startScrollLeft;
+      let startTime = null;
+
+      function animateScroll(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const scrollAmount = easeInOutQuad(timeElapsed, startScrollLeft, distance, 500);
+        carousels.scrollLeft = scrollAmount;
+
+        if (timeElapsed < 500) {
+          requestAnimationFrame(animateScroll);
+        } else {
+          carousels.scrollLeft = targetScrollLeft; // Ensure it ends at the exact target
+        }
+      }
+
+      function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      }
+
+      animateScroll(0);
+
+      setTimeout(() => {
+        slideIndex2++;
+        if (slideIndex2 >= totalSlides2) {
+          slideIndex2 = 0;
+        }
+        showSlides2(); // Call the function recursively
+      }, 3000);
+    }
+
+    showSlides2();
+  </script>
+  
+
+</body>
+</html>
